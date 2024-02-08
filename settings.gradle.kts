@@ -1,12 +1,23 @@
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
-}
-rootProject.name = "interview-platform"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-dependencyResolutionManagement {
-    versionCatalogs {
-        create("lib") {
-            from(files("gradle/catalogs/lib.versions.toml"))
-        }
+pluginManagement {
+    repositories {
+        includeBuild("build-logic")
+        mavenCentral()
+        google()
+        gradlePluginPortal()
     }
 }
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        google()
+    }
+}
+
+//includeBuild("build-logic")
+
+include(":ktor-server")
+
+rootProject.name = "interviewPlatform"
